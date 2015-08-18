@@ -7235,6 +7235,7 @@ package android.content {
     field public static final java.lang.String NSD_SERVICE = "servicediscovery";
     field public static final java.lang.String POWER_SERVICE = "power";
     field public static final java.lang.String PRINT_SERVICE = "print";
+    field public static final java.lang.String PRIVATE_SENSING_SERVICE = "privsensor";
     field public static final java.lang.String RESTRICTIONS_SERVICE = "restrictions";
     field public static final java.lang.String SEARCH_SERVICE = "search";
     field public static final java.lang.String SENSOR_SERVICE = "sensor";
@@ -21776,6 +21777,17 @@ package android.os {
     method public abstract android.os.IBinder asBinder();
   }
 
+  public abstract interface IPrivSensorService implements android.os.IInterface {
+    method public abstract java.lang.String helloWorld() throws android.os.RemoteException;
+  }
+
+  public static abstract class IPrivSensorService.Stub extends android.os.Binder implements android.os.IPrivSensorService {
+    ctor public IPrivSensorService.Stub();
+    method public android.os.IBinder asBinder();
+    method public static android.os.IPrivSensorService asInterface(android.os.IBinder);
+    method public boolean onTransact(int, android.os.Parcel, android.os.Parcel, int) throws android.os.RemoteException;
+  }
+
   public final class Looper {
     method public void dump(android.util.Printer, java.lang.String);
     method public static android.os.Looper getMainLooper();
@@ -22108,6 +22120,13 @@ package android.os {
     method public void release(int);
     method public void setReferenceCounted(boolean);
     method public void setWorkSource(android.os.WorkSource);
+  }
+
+  public class PrivSensorManager {
+    ctor public PrivSensorManager(android.os.IPrivSensorService);
+    method public static synchronized android.os.PrivSensorManager getPrivSensorManager();
+    method public android.os.IPrivSensorService getPrivSensorService();
+    method public java.lang.String helloWorld();
   }
 
   public class Process {

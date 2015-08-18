@@ -63,6 +63,7 @@ import android.hardware.ConsumerIrManager;
 import android.hardware.ISerialManager;
 import android.hardware.SerialManager;
 import android.hardware.SystemSensorManager;
+import android.os.PrivSensorManager;
 import android.hardware.hdmi.HdmiControlManager;
 import android.hardware.hdmi.IHdmiControlService;
 import android.hardware.camera2.CameraManager;
@@ -539,6 +540,12 @@ class ContextImpl extends Context {
                     return new SystemSensorManager(ctx.getOuterContext(),
                       ctx.mMainThread.getHandler().getLooper());
                 }});
+
+        registerService(PRIVATE_SENSING_SERVICE, new ServiceFetcher() {
+            public Object createService(ContextImpl ctx) {
+                return PrivSensorManager.getPrivSensorManager();
+            }
+            });
 
         registerService(STATUS_BAR_SERVICE, new ServiceFetcher() {
                 public Object createService(ContextImpl ctx) {

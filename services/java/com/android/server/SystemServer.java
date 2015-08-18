@@ -459,6 +459,13 @@ public final class SystemServer {
             consumerIr = new ConsumerIrService(context);
             ServiceManager.addService(Context.CONSUMER_IR_SERVICE, consumerIr);
 
+            try {
+                Slog.i(TAG, "PrivSensorService starting..");
+                ServiceManager.addService(Context.PRIVATE_SENSING_SERVICE, new PrivSensorService(context));
+                Slog.i(TAG, "PrivSensorService started...");
+            } catch (Throwable e) {
+                Slog.e(TAG, "Failure starting PrivSensorService");
+            }
             mSystemServiceManager.startService(AlarmManagerService.class);
             alarm = IAlarmManager.Stub.asInterface(
                     ServiceManager.getService(Context.ALARM_SERVICE));

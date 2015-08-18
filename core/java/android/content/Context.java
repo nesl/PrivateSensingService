@@ -2393,6 +2393,11 @@ public abstract class Context {
     public static final String SENSOR_SERVICE = "sensor";
 
     /**
+    * Our PrivSensorManager service name
+    */
+    public static final String PRIVATE_SENSING_SERVICE = "privsensor";
+
+    /**
      * Use with {@link #getSystemService} to retrieve a {@link
      * android.os.storage.StorageManager} for accessing system storage
      * functions.
